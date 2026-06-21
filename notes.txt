@@ -1,0 +1,1 @@
+nodemon ::+2                  Nodemon is a popular utility that automatically restarts your Node.js application when file changes are detected in your directory. It eliminates the need to manually stop and restart your server every time you update your code, significantly speeding up the development process. 
