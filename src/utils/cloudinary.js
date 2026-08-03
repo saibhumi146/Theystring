@@ -1,4 +1,4 @@
-import {v2 as Bhumi} from 'cloudinary';
+import {v2 as cloudinary} from 'cloudinary';
 import fs from 'fs';
 
 
@@ -23,9 +23,13 @@ const uploadOnCloudinary = async (localFilePath) => {
 
      } catch (error){
        fs.unlinkSync(localFilePath) // remove the file from local server
-       return null; 
+       return response.status(500).json({
+        success:false,
+        message:"File upload failed",
+        error:error.message
+       }); 
   }
 }
 
 
-export { uploadOnCloudinary }
+export  { uploadOnCloudinary };
