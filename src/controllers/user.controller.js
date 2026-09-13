@@ -232,7 +232,9 @@ const  refreshAccessToken = asyncHandler(async(req,res)=>{
         user.password = newPassword
        await user.save({validateBeforeSave:false})
 
-       return res.status(200).json(
+       return res
+       .status(200)
+       .json(
               new ApiResponse(200,{},"Password changed successfully")
        )
 
@@ -248,7 +250,7 @@ const updateAccountDetails = asyncHandler(async(req,res)=> {
        throw new ApiError("All fields are required",400)
      }
 
-     User.findByIdAndUpdate(
+     const user = await User.findByIdAndUpdate(
        req.user?._id,
        {
               $set:{
