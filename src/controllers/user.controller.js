@@ -149,12 +149,14 @@ const loginUser = asyncHandler(async(req,res)=>{
 
 })
 
+
+
 const logoutUser = asyncHandler(async(req,res)=>{
        User.findByIdAndUpdate(
               req.user._id,
               {
-                  $set:{
-                     refreshToken:undefined
+                  $unset:{
+                     refreshToken:1
                   }
               },
               {
@@ -242,7 +244,7 @@ const  refreshAccessToken = asyncHandler(async(req,res)=>{
 const getCurrentUser = asyncHandler(async(req,res)=>{
         return res 
        .status(200)
-       .json(200,req.user,"current user fetched s uccessfully")
+       .json({ statusCode: 200, data: req.user, message: "Current user fetched successfully" });
        
 })
 const updateAccountDetails = asyncHandler(async(req,res)=> {
